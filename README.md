@@ -7,10 +7,14 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
 - Java 11+
 - Spring Boot
 - Spring Data JPA
+- Spring Web
+- Spring Test
 - H2 Database
 - Lombok
 - ModelMapper
 - Jackson
+- JUnit 5
+- Mockito
 
 ## Requisitos
 
@@ -43,7 +47,7 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
 ## Endpoints
 
 ### Criar Pagamento
-- URL: /pagamento
+- URL: http://localhost:8080/transacao
 
 - Método: POST
 
@@ -86,7 +90,7 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
   }
 
 ### Listar Pagamentos
-- URL: /pagamento
+- URL: http://localhost:8080/transacao
 - Método: GET
 - Response:
 - ```sh
@@ -111,7 +115,7 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
   ]
 
 ### Buscar Pagamento por ID
-- URL: /pagamento/{id}
+- URL: http://localhost:8080/transacao/{id}
 - Método: GET
 - Response:
   ```sh
@@ -132,13 +136,9 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
     "parcelas": 1
   }
 
-### Remover Pagamento
-- URL: /pagamento/{id}
-- Método: DELETE
-- Response: 204 No Content
 
 ### Estornar Pagamento
-- URL: /pagamento/{id}
+- URL: http://localhost:8080/transacao/estornar/{id}
 - Método: PUT
 - Response:
     ```sh
@@ -159,7 +159,9 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
     "parcelas": 1
   }
   }
-  
 
-
+### Remover Pagamento
+- URL: http://localhost:8080/transacao/{id}
+- Método: DELETE
+- Response: 204 No Content
 

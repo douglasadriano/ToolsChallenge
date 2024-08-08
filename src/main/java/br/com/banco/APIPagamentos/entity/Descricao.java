@@ -10,10 +10,10 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Data //cria os getters and setters e o to string automaticamente
-@AllArgsConstructor //cria o construtor com as propriedades que criar de pagamento
-@NoArgsConstructor //cria um construtor vazio, sem argumento
-@Builder //ajuda na criação de objetos pagamento
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 public class Descricao {
 
@@ -38,5 +38,10 @@ public class Descricao {
     private Long codigoAutorizacao;
 
     @Column(name = "status", nullable = true)
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    public enum Status {
+        AUTORIZADO, NEGADO, CANCELADO
+    }
 }

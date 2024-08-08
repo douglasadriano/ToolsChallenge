@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class APIPagamentosApplication {
+public class APIPagamentos {
 
 	@Bean
 	public ModelMapper modelMapper(){
@@ -16,7 +16,7 @@ public class APIPagamentosApplication {
 	};
 
 	public static void main(String[] args) {
-		SpringApplication.run(APIPagamentosApplication.class, args);
+		SpringApplication.run(APIPagamentos.class, args);
 	}
 
 }

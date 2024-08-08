@@ -1,7 +1,7 @@
 package br.com.banco.APIPagamentos.service;
 
-import br.com.banco.APIPagamentos.entity.Pagamento;
-import br.com.banco.APIPagamentos.repository.PagamentoRepository;
+import br.com.banco.APIPagamentos.entity.Transacao;
+import br.com.banco.APIPagamentos.repository.TransacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,21 +12,21 @@ import java.util.Optional;
 public class PagamentoService {
 
     @Autowired
-    private PagamentoRepository pagamentoRepository;
+    private TransacaoRepository transacaoRepository;
 
-    public Pagamento salvar(Pagamento pagamento) {
-        return pagamentoRepository.save(pagamento);
+    public Transacao salvar(Transacao transacao) {
+        return transacaoRepository.save(transacao);
     }
 
-    public List<Pagamento> listaPagamento() {
-        return pagamentoRepository.findAll();
+    public List<Transacao> listaPagamento() {
+        return transacaoRepository.findAll();
     }
 
-    public Optional<Pagamento> buscarPorId(Long id) {
-        return pagamentoRepository.findById(id);
+    public Optional<Transacao> buscarPorId(Long id) {
+        return transacaoRepository.findById(id);
     }
 
     public void removerPorID(Long id) {
-        pagamentoRepository.deleteById(id);
+        transacaoRepository.deleteById(id);
     }
 }

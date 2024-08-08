@@ -1,9 +1,7 @@
 package br.com.banco.APIPagamentos.http.controller;
 
 import br.com.banco.APIPagamentos.entity.FormaPagamento;
-import br.com.banco.APIPagamentos.entity.Pagamento;
 import br.com.banco.APIPagamentos.service.FormaPagamentoService;
-import br.com.banco.APIPagamentos.service.PagamentoService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +36,7 @@ public class FormaPagamentoController {
     @ResponseStatus(HttpStatus.OK)
     public FormaPagamento buscarFormaPagamentoPorID(@PathVariable("id") Long id) {
         return formaPagamentoService.buscarPorId(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Forma de Pagamento não encontrada."));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Forma de Transacao não encontrada."));
     }
 
     @DeleteMapping("/{id}")
@@ -48,7 +46,7 @@ public class FormaPagamentoController {
                 .map(FormaPagamento -> {
                     formaPagamentoService.buscarPorId(FormaPagamento.getId());
                     return Void.TYPE;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Forma de Pagamento não encontrado."));
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Forma de Transacao não encontrado."));
     }
 
     @PutMapping("/{id}")
@@ -58,6 +56,6 @@ public class FormaPagamentoController {
                 .map(formaPagamentoBase ->{
                     modelMapper.map(formaPagamento, formaPagamentoBase);
                     return Void.TYPE;
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Forma de Pagamento não encontrado."));
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Forma de Transacao não encontrado."));
     }
 }

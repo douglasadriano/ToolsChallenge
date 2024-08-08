@@ -1,9 +1,7 @@
 package br.com.banco.APIPagamentos.service;
 
 import br.com.banco.APIPagamentos.entity.FormaPagamento;
-import br.com.banco.APIPagamentos.entity.Pagamento;
 import br.com.banco.APIPagamentos.repository.FormaPagamentoRepository;
-import br.com.banco.APIPagamentos.repository.PagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

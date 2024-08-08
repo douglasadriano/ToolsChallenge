@@ -8,13 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-@Data //cria os getters and setters e o to string automaticamente
-@AllArgsConstructor //cria o construtor com as propriedades que criar de pagamento
-@NoArgsConstructor //cria um construtor vazio, sem argumento
-@Builder //ajuda na criação de objetos pagamento
-@Entity //para informar que é uma entidade de banco de dados
-public class Pagamento implements Serializable {
-
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Entity
+public class Transacao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
