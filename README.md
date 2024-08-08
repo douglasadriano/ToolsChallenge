@@ -2,6 +2,7 @@
 
 Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spring Boot. A API permite realizar operações de criação, consulta, remoção e estorno de pagamentos.
 
+---
 ## Tecnologias Utilizadas
 
 - Java 11+
@@ -15,13 +16,15 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
 - Jackson
 - JUnit 5
 - Mockito
-
+- Postman (para testes e documentação da API)
+---
 ## Requisitos
 
 - JDK 11+
 - Maven 3.6+
 - Git
-
+- Postman (opcional, mas recomendado para testes de API)
+---
 ## Configuração do Projeto
 
 1. Clone o repositório:
@@ -43,7 +46,7 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
 
    ```sh
    mvn spring-boot:run
-
+---
 ## Endpoints
 
 ### Criar Pagamento
@@ -164,4 +167,11 @@ Este é um projeto de uma API de Pagamentos desenvolvida em Java utilizando Spri
 - URL: http://localhost:8080/transacao/{id}
 - Método: DELETE
 - Response: 204 No Content
+---
+## Testes com Postman
+Para facilitar o uso e teste da API, recomendo utilizar o Postman. Aqui está como você pode configurar o Postman para trabalhar com esta API:
 
+1. Abra o Postman.
+2. Crie uma nova coleção (Collection) para agrupar suas requisições.
+3. Adicione as requisições para cada endpoint listado acima, configurando o método HTTP e o corpo da requisição (quando aplicável).
+4. Teste os endpoints para garantir que a API está funcionando conforme esperado.
