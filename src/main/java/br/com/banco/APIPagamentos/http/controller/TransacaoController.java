@@ -3,9 +3,8 @@ package br.com.banco.APIPagamentos.http.controller;
 import br.com.banco.APIPagamentos.entity.Descricao;
 import br.com.banco.APIPagamentos.entity.Transacao;
 import br.com.banco.APIPagamentos.entity.FormaPagamento.Tipo;
-import br.com.banco.APIPagamentos.service.PagamentoService;
+import br.com.banco.APIPagamentos.service.TransacaoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ import java.util.Map;
 public class TransacaoController {
 
     @Autowired
-    private PagamentoService pagamentoService;
+    private TransacaoService transacaoService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -47,7 +46,7 @@ public class TransacaoController {
             pagamento.getDescricao().setNsu(1234567890L);
             pagamento.getDescricao().setCodigoAutorizacao(147258369L);
 
-            return pagamentoService.salvar(pagamento);
+            return transacaoService.salvar(pagamento);
         } catch (IllegalArgumentException ex) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tipo de pagamento inválido.");
         }
@@ -56,22 +55,22 @@ public class TransacaoController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Transacao> listaTransacao() {
-        return pagamentoService.listaPagamento();
+        return transacaoService.listaPagamento();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Transacao buscarPagamentoPorID(@PathVariable("id") Long id) {
-        return pagamentoService.buscarPorId(id)
+        return transacaoService.buscarPorId(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transacao não encontrado."));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removerPagamento(@PathVariable("id") Long id) {
-        pagamentoService.buscarPorId(id)
+        transacaoService.buscarPorId(id)
                 .map(pagamento -> {
-                    pagamentoService.removerPorID(pagamento.getId());
+                    transacaoService.removerPorID(pagamento.getId());
                     return Void.TYPE;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transacao não encontrado."));
     }
@@ -79,10 +78,10 @@ public class TransacaoController {
     @PutMapping("/estornar/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Transacao estornarPagamento(@PathVariable("id") Long id) {
-        return pagamentoService.buscarPorId(id)
+        return transacaoService.buscarPorId(id)
                 .map(pagamento -> {
                     pagamento.getDescricao().setStatus(Descricao.Status.CANCELADO);
-                    return pagamentoService.salvar(pagamento);
+                    return transacaoService.salvar(pagamento);
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Transacao não encontrado."));
     }
 }
